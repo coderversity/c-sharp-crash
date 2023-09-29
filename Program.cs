@@ -1,4 +1,5 @@
 ﻿using System;
+using c_sharp_crash;
 
 /**
  * HELLO WORLD APPLICASTION
@@ -16,6 +17,8 @@ class Program
         Loops();
         Arrays();
         Collections();
+        Methods();
+        Classes();
     }
 
     private static void PrintToConsole()
@@ -291,7 +294,19 @@ class Program
         while (queue.Count > 0)
         {
             string item = queue.Dequeue();
-            Console.WriteLine(item);
+            Console.WriteLine("Queue: " + item);
+        }
+
+        // Stacks are Last-In / First-Out (LIFO) collections
+        Stack<string> stack = new Stack<string>();
+        stack.Push("First");
+        stack.Push("Second");
+        stack.Push("Third");
+
+        while (stack.Count > 0)
+        {
+            string item = stack.Pop();
+            Console.WriteLine("Stack: " + item);
         }
     }
 
@@ -334,5 +349,63 @@ class Program
         {
             Console.WriteLine("Number: " + number);
         }
+    }
+
+    private static void Methods()
+    {
+        SayHello();
+
+        int a = 10;
+        int b = 20;
+        int sum = Add(a, b);
+        Console.WriteLine($"Sum of {a} and {b}: " + sum);
+
+        // Method overloading
+        Console.WriteLine($"Overload 1 (double): {Add(10.5, 20.39)}");
+        Console.WriteLine($"Overload 2 (int): {Add(1, 3, 5)}");
+    }
+
+    // Function without parameters and return value (void)
+    private static void SayHello()
+    {
+        Console.WriteLine("Hello, World!");
+    }
+
+    // Function with parameters and return value
+    private static int Add(int a, int b)
+    {
+        int sum = a + b;
+        return sum;
+    }
+
+    /**
+     * METHOD OVERLOADING
+     */
+    // We can also overload methods. Method overrloading occurs when you define multiple methods of the same name with
+    // different return types and/or parameter data types.
+
+    // Method for adding two doubles
+    private static double Add(double a, double b)
+    {
+        return a + b;
+    }
+
+    // Method for adding three integers
+    private static int Add(int a, int b, int c)
+    {
+        return a + b + c;
+    }
+
+    private static void Classes()
+    {
+        // Create an object of the "Person" class using a constructor
+        Person person1 = new Person("Chad", 30);
+
+        // Access and modify properties
+        person1.Age = 31;
+        Console.WriteLine("Updated Age: " + person1.Age);
+
+        // Call a method to display information
+        person1.Greet();
     }
 }
