@@ -13,9 +13,9 @@ class Program
         ComparisonOperators();
         LogicalOperators();
         ConditionalStatements();
+        Loops();
         Arrays();
         Collections();
-        Loops();
     }
 
     private static void PrintToConsole()
@@ -231,6 +231,7 @@ class Program
     private static void Collections()
     {
         // Lists are like dynamic arrays that can store elements of a specified type (T)
+        // Lists can contain duplicate values
         List<string> cities = new List<string>();
 
         // add items to List
@@ -239,6 +240,59 @@ class Program
         Console.WriteLine("First city: " + cities[0]);
         Console.WriteLine("Secondy city: " + cities[1]);
         Console.WriteLine("Number of cities in list: " + cities.Count);
+
+        // Looping through a List with a foreach loop
+        foreach (string city in cities)
+        {
+            Console.WriteLine("City: " + city);
+        }
+        
+
+        // Dictionaries contain key-value pairs. The keys are used to index a particular entry and they are unique.
+        // Values can be duplicated between entries.
+
+        Dictionary<string, int> ageDict = new Dictionary<string, int>();
+        string dictKey = "Alice";
+        ageDict[dictKey] = 30;
+
+        // Now get the dictionary entry
+        if (ageDict.ContainsKey(dictKey))
+        {
+            Console.WriteLine($"{dictKey}'s age: {ageDict[dictKey]}");
+        }
+
+        // Loop through dictionary entries
+        foreach (var entry in ageDict)
+        {
+            // get key
+            Console.WriteLine("Key: " + entry.Key);
+            Console.WriteLine("Value: " + entry.Value);
+        }
+
+        // Hashsets store only unique values (no duplicates)
+        HashSet<string> names = new HashSet<string>();
+        names.Add("Ron");
+        names.Add("Tommy");
+        names.Add("Tommy"); // Duplicate, won't be added
+
+        // Loop through HashSet
+        foreach (string name in names)
+        {
+            Console.WriteLine("Name in hashset: " + name);
+        }
+
+        // Queues are First-In / Frst-Out collections (FIFO). The first entry to be added to a Queue will
+        // be the first one to be removed.
+        Queue<string> queue = new Queue<string>();
+        queue.Enqueue("First");
+        queue.Enqueue("Second");
+        queue.Enqueue("Third");
+
+        while (queue.Count > 0)
+        {
+            string item = queue.Dequeue();
+            Console.WriteLine(item);
+        }
     }
 
     private static void Loops()
@@ -279,14 +333,6 @@ class Program
         foreach (int number in numbers)
         {
             Console.WriteLine("Number: " + number);
-        }
-
-        // Foreach loop with list
-        List<string> names = new List<string> { "Alice", "Bob", "Charlie" };
-
-        foreach (string name in names)
-        {
-            Console.WriteLine("Name: " + name);
         }
     }
 }
