@@ -1,156 +1,132 @@
-﻿using c_sharp_crash;
-
-// Outputting to cnsole followed by a new line
-Console.WriteLine("Hello, world!");
-
-// Output to console without a trailing new line
-Console.Write("My name is Ron.");
-Console.WriteLine("I am a software developer");
-
-/*
- * DATA TYPES
- */
-// assigning a value to a variable
-int num = 4;
-Console.WriteLine(num);
-
-// you can also declare variables without assigning a value
-string name;
-name = "Ron";
-Console.WriteLine(name);
-
-// strings
-string text = "Welcome to C#!";
-Console.WriteLine(text);
-
-// char (use single quotes)
-char letter = 't';
-Console.WriteLine(letter);
-
-// type coercion - forcing a char to become a string data type
-string str = "" + letter;
-str = str + "ea";
-Console.WriteLine(str);
-
-// using the ToString() function
-char letter2 = 'Y';
-string letter2AsStr = letter2.ToString();
-Console.WriteLine(letter2AsStr + " is a " + letter2AsStr.GetType());
-
-
-// integers (whole numbers)
-int x = 5;
-int y = 10;
-Console.WriteLine(x + y);
-
-// integers can be negative too
-int a = -25;
-int b = -4;
-Console.WriteLine(a * b);
-
-// floats (single-digit precision)
-float num1 = 2.5f;
-float num2 = 35.6f;
-Console.WriteLine(num1 + num2);
-
-// doubles (stores flatoing point numbers with decimals)
-double c = 242.4290900940904;
-double d = 33.33389849898;
-Console.WriteLine(c + d);
-
-// decimals (for more fine-tuning of decimal values. Generally used for money values)
-decimal e = (Decimal) c;
-decimal f = (Decimal) d;
-Console.WriteLine(e + f);
-
-// booleans (true or false)
-bool isSunny = true;
-Console.WriteLine(isSunny);
-
-// Date and Time
-DateTime currentDate = DateTime.Now;
-Console.WriteLine(currentDate);
-
-// Date only (two ways)
-// as datetime value (will just set time to 12:00 AM UTC)
-DateTime dateOnly = currentDate.Date;
-Console.WriteLine(dateOnly);
-
-// or, convert to string and truncate the time
-string dateAsStr = currentDate.ToString("yyyy-MM-dd");
-Console.WriteLine(dateAsStr);
-
-// get future date and time
-DateTime tomorrow = currentDate.AddDays(1);
-Console.WriteLine(tomorrow);
-
-// get past date and time
-DateTime yesterday = currentDate.AddDays(-1);
-Console.WriteLine(yesterday);
-
-// enumerators (enums) - used to define named integer constants
-//Console.WriteLine(DaysOfWeek.Wednesday);
-
-//enum DaysOfWeek
-//{
-//    Sunday,
-//    Monday,
-//    Tuesday,
-//    Wednesday,
-//    Thursday,
-//    Friday,
-//    Saturday
-//}
+﻿using System;
 
 /**
- * ARRAYS
+ * HELLO WORLD APPLICASTION
  */
-// Arrays allow you to store multiple values of the same data type
-int[] numbers = { 1, 2, 3, 4, 5 };
-Console.WriteLine($"Position 0: {numbers[0]}, Position 2: {numbers[2]}");
-
-// defining an array with a pre-determined number of indexes
-string[] people = new string[2];
-people[0] = "Bob";
-people[1] = "Jane";
-Console.WriteLine(people.Length);
-
-
-// an error if we try to add another person to the people array
-try
+class Program
 {
-    people[2] = "John";
-} catch (Exception exc)
-{
-    Console.WriteLine($"An error occurred: {exc}");
+    static void Main()
+    {
+        PrintToConsole();
+        VariablesAndDataTypes();
+        MathOperators();
+        ComparisonOperators();
+    }
+
+    private static void PrintToConsole()
+    {
+        Console.WriteLine("Hello, World!");
+    }
+
+    private static void VariablesAndDataTypes()
+    {
+        // Integer (whole number)
+        int age = 30;
+        Console.WriteLine(age);
+
+        // Floating point number with single-digit precision
+        // Use 'f' to specify a float literal
+        float price = 19.99f;
+        Console.WriteLine(price);
+
+        // Floating point number with Double-digit precision floating point number
+        double interest = 5.52;
+        Console.WriteLine(interest);
+
+        // for the most accurate rounding, use decimal instead of double (best used for money values)
+        decimal accountBalance = 3424.45M;
+        Console.WriteLine($"Your account balance is {accountBalance}");
+
+        // Character
+        char grade = 'A';
+        Console.WriteLine($"Your overall grade this semester: {grade}");
+
+        // Strings are text values that usually contain one or more characters. THey are immutable objects,
+        // which means that we cannot change them. Every "change" will create a new string object in memory.
+        string name = "Ron";
+        Console.WriteLine($"Hi, my name is {name}");
+
+        // Booleans are true or false values
+        bool isStudent = true;
+        Console.WriteLine(isStudent);
+
+        // Variables can also be declared without initialization
+        int quantity;
+        string product;
+
+        // Assigning values to previously declared variables
+        quantity = 4;
+        product = "apples";
+        Console.WriteLine($"There are {quantity} {product} on sale.");
+
+        // Constants are read-only values that cannot be changed
+        const double Pi = 3.14159265359;
+        Console.WriteLine($"Value of PI: {Pi}");
+
+        // If we try to change Pi, we'll get an error message
+        //Pi = 0;
+    }
+
+
+    private static void MathOperators()
+    {
+        int num1 = 10;
+        int num2 = 5;
+
+        int addition = num1 + num2;    // Addition: 10 + 5 = 15
+        Console.WriteLine("Addition: " + addition);
+
+        int subtraction = num1 - num2; // Subtraction: 10 - 5 = 5
+        Console.WriteLine("Subtraction: " + subtraction);
+
+        int multiplication = num1 * num2; // Multiplication: 10 * 5 = 50
+        Console.WriteLine("Multiplication: " + multiplication);
+
+        int division = num1 / num2;      // Division: 10 / 5 = 2
+        Console.WriteLine("Division: " + division);
+
+
+        // The following will cause a Divide by Zero exception. Use a try/catch block to handle these (see exception handling below)
+        int num3 = 5;
+        int num4 = 0;
+
+        try
+        {
+            division = num3 / num4;
+            Console.WriteLine(division);
+        } catch (DivideByZeroException ex)
+        {
+            Console.WriteLine("An error occurred: " + ex.ToString());
+        }
+
+        int modulus = num1 % num2;       // Modulus (remainder of 0): 10 % 5 = 0
+        Console.WriteLine("Modulus: " + modulus);
+
+        modulus = 11 % 2;       // Modulus (remainder of 1): 11 % 5 = 1
+        Console.WriteLine("Modulus: " + modulus);
+    }
+
+    private static void ComparisonOperators()
+    {
+        int a = 10;
+        int b = 5;
+
+        bool isEqual = (a == b);    // Equal to: false
+        Console.WriteLine("Numbers equal? " + isEqual);
+
+        bool isNotEqual = (a != b); // Not equal to: true
+        Console.WriteLine("Numbers not equal? " + isNotEqual);
+
+        bool isGreater = (a > b);   // Greater than: true
+        Console.WriteLine("Is A greater than B? " + isGreater);
+
+        bool isLess = (a < b);      // Less than: false
+        Console.WriteLine("Is A less than B? " + isLess);
+
+        bool isGreaterOrEqual = (a >= b); // Greater than or equal to: true
+        Console.WriteLine("Is A greater than or equal to B? " + isGreaterOrEqual);
+
+        bool isLessOrEqual = (a <= b);    // Less than or equal to: false
+        Console.WriteLine("Is A less than or equal to B? " + isLessOrEqual);
+    }
 }
-
-// Object as a data type to hold ANY value
-Object obj1 = 2;
-Object obj2 = DateTime.Now;
-Console.WriteLine($"{obj1} is a {obj1.GetType()}");
-Console.WriteLine($"{obj2} is a {obj2.GetType()}");
-
-// you can also have an array of Object data types
-Object[] objArray = { obj1, obj2, "This is a string" };
-Console.WriteLine(objArray[2]);
-
-/**
- * NULLABLE DATA TYPES
- */
-// We can set a value as nullable if we believe that the value may have a null value
-int? age = null;
-Console.WriteLine($"Age: {age}");
-age = 24;
-Console.WriteLine($"Age: {age}");
-
-/**
- * CLASSES AND STRUCTS
- */
-// Classes and structs are like custom data types that you can create to define behavior and state.
-
-// Classes
-Person person = new Person();
-person.Name = "Katie";
-person.Age = 42;
-Console.WriteLine(person.Age);
