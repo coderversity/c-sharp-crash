@@ -11,6 +11,11 @@ class Program
         VariablesAndDataTypes();
         MathOperators();
         ComparisonOperators();
+        LogicalOperators();
+        ConditionalStatements();
+        Arrays();
+        Collections();
+        Loops();
     }
 
     private static void PrintToConsole()
@@ -128,5 +133,160 @@ class Program
 
         bool isLessOrEqual = (a <= b);    // Less than or equal to: false
         Console.WriteLine("Is A less than or equal to B? " + isLessOrEqual);
+    }
+
+    private static void LogicalOperators()
+    {
+        bool x = true;
+        bool y = false;
+
+        bool andResult = x && y; // Logical AND: false
+        Console.WriteLine("X and Y: " + andResult);
+
+        bool orResult = x || y;  // Logical OR: true
+        Console.WriteLine("X or Y: " + orResult);
+
+        bool notResult = !x;     // Logical NOT (inverts boolean values): false
+        Console.WriteLine("Inverse of x: " + notResult);
+    }
+
+    private static void ConditionalStatements()
+    {
+        /**
+         * IF-ELSE STATEMENTS
+         */
+        int age = 25;
+
+        if (age < 18)
+        {
+            Console.WriteLine("You are a minor.");
+        }
+        else if (age >= 18 && age < 65)
+        {
+            Console.WriteLine("You are an adult.");
+        }
+        else
+        {
+            Console.WriteLine("You are a senior citizen.");
+        }
+
+        /**
+         * SWITCH STATEMENTS
+         */
+        int day = 3;
+        string dayName;
+
+        switch (day)
+        {
+            case 1:
+                dayName = "Monday";
+                break;
+            case 2:
+                dayName = "Tuesday";
+                break;
+            case 3:
+                dayName = "Wednesday";
+                break;
+            case 4:
+                dayName = "Thursday";
+                break;
+            case 5:
+                dayName = "Friday";
+                break;
+            default:
+                dayName = "Weekend";
+                break;
+        }
+
+        Console.WriteLine("Today is " + dayName);
+    }
+
+    private static void Arrays()
+    {
+        // Declare an array with pre-determined number of indexes
+        int[] numbers = new int[5];
+
+        // Initialize elements of the array
+        numbers[0] = 1;
+        numbers[1] = 2;
+        numbers[2] = 3;
+        numbers[3] = 4;
+        numbers[4] = 5;
+
+        Console.WriteLine("The first number in the array is " + numbers[0]);
+        Console.WriteLine("The fourth number in the array is " + numbers[3]);
+
+        // Get number of items in array
+        Console.WriteLine("Amount of numbers in array: " + numbers.Length);
+
+        // Declare an array with shorthand and no pre-determined number of indexes
+        string[] names =
+        {
+            "Bobby", "Katie", "Joseph", "Barbara", "Jimmy"
+        };
+
+        Console.WriteLine("The last name in the array is: " + names[names.Length - 1]);
+    }
+
+    private static void Collections()
+    {
+        // Lists are like dynamic arrays that can store elements of a specified type (T)
+        List<string> cities = new List<string>();
+
+        // add items to List
+        cities.Add("New York");
+        cities.Add("Tokyo");
+        Console.WriteLine("First city: " + cities[0]);
+        Console.WriteLine("Secondy city: " + cities[1]);
+        Console.WriteLine("Number of cities in list: " + cities.Count);
+    }
+
+    private static void Loops()
+    {
+        // For-loop continues to iterate until the condition is met
+        for (int i = 1; i <= 5; i++)
+        {
+            Console.WriteLine("For-loop count " + i);
+        }
+
+        // While-loop is used when you don't want to specify a condition beforehand. The loop will continue to iterate
+        // unless a condition (which is specified within the loop block) is met.
+        int count = 0;
+
+        while (count < 3)
+        {
+            Console.WriteLine("While-loop count: " + count);
+            count++; // VERY IMPORTANT: make sure to increment or decrement a counter to prevent infinite loops
+        }
+
+        // Do-while-loops (unlike while-loops) are guaranteed to run at least once. Use this loop if you don't want to specify
+        // the condition beforehand, but want the loop to execute the code block AT LEAST ONCE.
+        int num = 1;
+
+        do
+        {
+            Console.WriteLine("Do-while-loop count: " + num);
+            num++;
+        } while (num <= 3);
+
+        // FOR-EACH LOOPS
+        // For-each loops are generally used with collection types, and they continue to iterate until the loop reaches the end of
+        // the collection.
+
+        // Foreach loop with array
+        int[] numbers = { 1, 2, 3, 4, 5 };
+
+        foreach (int number in numbers)
+        {
+            Console.WriteLine("Number: " + number);
+        }
+
+        // Foreach loop with list
+        List<string> names = new List<string> { "Alice", "Bob", "Charlie" };
+
+        foreach (string name in names)
+        {
+            Console.WriteLine("Name: " + name);
+        }
     }
 }
