@@ -1,5 +1,5 @@
 # C# Crash Course by Coderversity
-# @Coderversity on YouTube - https://www.youtube.com/@coderversity/featured
+@Coderversity on YouTube - https://www.youtube.com/@coderversity
 
 Welcome to the C# Crash Course repository! This repository contains code examples and resources to help you learn the fundamentals of C# programming.
 
