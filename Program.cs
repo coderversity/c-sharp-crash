@@ -19,6 +19,7 @@ class Program
         Collections();
         Methods();
         Classes();
+        ExceptionHandling();
     }
 
     private static void PrintToConsole()
@@ -407,5 +408,57 @@ class Program
 
         // Call a method to display information
         person1.Greet();
+    }
+
+    private static void ExceptionHandling()
+    {
+        // In C#, a DivideByZero exception is thrown when an dividing any number by zero.
+        // We need to handle this exception gracefully to continue program execution
+        int a = 10;
+        int b = 0;
+
+        try
+        {
+            int result = a / b;
+        } catch (DivideByZeroException ex)
+        {
+            Console.WriteLine("Oops, an error occurred: " + ex.Message);
+       }
+
+        // Sometimes, we won't know what type of exception to catch. We can use the base .NET exception class
+        // to catch miscellaneous exceptions
+        List<string> shapes = new List<string>{ "square", "rectangle", "circle" };
+
+        try
+        {
+            // Let's intntionally throw an exception by grabbing the 4th item in the list (which doesn't exist)
+            // Shouuld throw an "index out of range" exception
+            Console.WriteLine(shapes[3]);
+        } catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        } finally
+        {
+            // Finally always executes, even if no exception is thrown
+            Console.WriteLine("This code always runs!");
+        }
+
+        // We can also create custom exception classes
+        bool isStudent = false;
+
+        try
+        {
+            if (isStudent)
+            {
+                Console.WriteLine("This is a student");
+            }
+            else
+            {
+                throw new CustomException("You cannot enroll for this course because you are not a student.");
+            }
+        } catch (CustomException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 }
